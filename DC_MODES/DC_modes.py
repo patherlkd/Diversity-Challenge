@@ -16,7 +16,7 @@ def DC_mode(arg):
     switcher = {
         1: "Starter for 10",
         2: "",
-        3: "",
+        3: "Decide Winner",
         'A': "",
         4: "",
         5: "",
@@ -55,6 +55,41 @@ def keypadEvent():
             GPIO.output(MCOL[j],1)
         
     return key
+
+def decideWinner(bteam,rteam,DCdisp):
+    #DCdisp.displayLogo()
+    DCdisp.displayText("Diversity Challenge Champions 2019 are ... ",DCUI.Blue,75, 0.5, 0.3)
+    DCdisp.updateDisplay()
+    sleep(4)
+    
+    if bteam.getTotalScore() > rteam.getTotalScore():
+        winning_team = bteam
+    elif bteam.getTotalScore() == rteam.getTotalScore():
+        DCdisp.displayLogo()
+        DCdisp.displayText("SUDDEN DEATH",DCUI.Red,100, 0.5, 0.5)
+        DCdisp.updateDisplay()
+        sleep(4)
+        
+        i_cnt = 0
+        starter_for_10(bteam,rteam,DCdisp,i_cnt)
+        
+        if bteam.getTotalScore() > rteam.getTotalScore():
+            winning_team = bteam
+        else:
+            winning_team = rteam
+    else:
+        winning_team = rteam
+    
+    #DCdisp.displayLogo()
+    DCdisp.displayText("Diversity Challenge Champions 2019 are ... ",DCUI.Blue,75, 0.5, 0.3)
+    DCdisp.displayWelcomeEmpty(0.5,0.6)
+    DCdisp.displayText("#TEAM "+winning_team.getTeamName(),DCUI.DarkGreen,80, 0.5, 0.85)
+    DCdisp.updateDisplay()
+    
+    DCdisp.soundApplause(0)
+    
+    
+        
 
 def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     if incorrect_cnt == 2:
@@ -108,12 +143,15 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.5, 0.95)
     DCdisp.updateDisplay()
     
-    if keypadEvent() == 'A':
-        DCdisp.displayLogo()
-        DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
-        DCQ.DCqu.dispAnswer(DCdisp)
-        DCdisp.displayText("[1] Correct [2] Incorrect [3] Incorrect Interruption [*] Restart starter for 10",DCUI.Blue,20, 0.5, 0.95)
-        DCdisp.updateDisplay()
+    key = '0'
+    while(key != 'A'):
+        key = keypadEvent()
+            
+    DCdisp.displayLogo()
+    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
+    DCQ.DCqu.dispAnswer(DCdisp)
+    DCdisp.displayText("[1] Correct [2] Incorrect [3] Incorrect Interruption [*] Restart starter for 10",DCUI.Blue,20, 0.5, 0.95)
+    DCdisp.updateDisplay()
     finished = 0
     correct_ans = 0
     
@@ -231,11 +269,15 @@ def bonusRound(team,DCdisp):
         DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
     
-        if keypadEvent() == 'A':
-            DCdisp.displayLogo()
-            DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
-            DCQ.DCqu.dispAnswer(DCdisp)
-            DCdisp.displayText("[1] Correct [2] Incorrect [*] Start another bonus round question",DCUI.Blue,20, 0.5, 0.95)
+        
+        key = '0'
+        while(key != 'A'):
+            key = keypadEvent()
+        
+        DCdisp.displayLogo()
+        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCQ.DCqu.dispAnswer(DCdisp)
+        DCdisp.displayText("[1] Correct [2] Incorrect [*] Start another bonus round question",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
         
         finished = 0

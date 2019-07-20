@@ -22,9 +22,11 @@ class dcui:
         
         self.DClogoimage = pygame.image.load('DC_UI/images/DC_icon.png')
         self.Mainimage = pygame.image.load('DC_UI/images/diversitychallenge_mainimage.png')
+        self.Mainimageempty = pygame.image.load('DC_UI/images/diversitychallenge_mainimage_empty.png')
         
         self.DClogoimage = pygame.transform.scale(self.DClogoimage, (int(self.DClogoimage.get_width()/5),int(self.DClogoimage.get_height()/5)))
         self.Mainimage = pygame.transform.scale(self.Mainimage, (int(self.Mainimage.get_width()/12),int(self.Mainimage.get_height()/12)))
+        self.Mainimageempty = pygame.transform.scale(self.Mainimageempty, (int(self.Mainimageempty.get_width()),int(self.Mainimageempty.get_height())))
         
         pygame.display.set_caption('Diversity Challenge')
         self.main_display = pygame.display.set_mode(self.disp_size) ## rset surface object
@@ -66,6 +68,11 @@ class dcui:
         h = self.Mainimage.get_size()[1]
         self.main_display.blit(self.Mainimage,self.place(w,h,x,y))
         
+    def displayWelcomeEmpty(self,x,y):
+        w = self.Mainimageempty.get_size()[0]
+        h = self.Mainimageempty.get_size()[1]
+        self.main_display.blit(self.Mainimageempty,self.place(w,h,x,y))
+        
     def text_objects(self,text, font,color):
         textsurface = font.render(text,True,color)
         return textsurface, textsurface.get_rect()
@@ -80,6 +87,13 @@ class dcui:
         snd = pygame.mixer.Sound("DC_UI/sounds/Buzz.wav")
         pygame.mixer.Sound.play(snd)
         sleep(dur_secs)
+        
+    def soundApplause(self,rep):
+        snd = pygame.mixer.music.load("DC_UI/sounds/Applause.mp3")
+        pygame.mixer.music.play(rep)
+        while pygame.mixer.music.get_busy(): 
+            pygame.time.Clock().tick(10)
+            
      
         
         
