@@ -5,7 +5,7 @@ import pygame
 import RPi.GPIO as GPIO
 import DC_UI.DC_ui as DCUI
 
-WORD_PER_LINE_LIM = 12
+WORD_PER_LINE_LIM = 8
 WORD_PER_LINE_LIM_ANS = 3
 
 class question:
@@ -41,13 +41,30 @@ class question:
         question_cnt = 0
         
         question = None
+        category = None
+        author = None
+        contact = None
+        
         with open(self.questionsfile) as csvfile:
            readCSV = csv.reader(csvfile, delimiter=',')
            for row in readCSV:
                if question_cnt == question_num:
+                   author = row[2]
+                   contact = row[3]
+                   category = row[4]
                    question = row[5]
                    self.answer = row[6]
                question_cnt+=1
+        
+        if author =="":
+            DCdisp.displayText("DC Team",DCUI.DarkGreen,60,0.3,0.9)
+        else:
+            DCdisp.displayText(author,DCUI.DarkGreen,60,0.3,0.9)
+        
+        if contact =="":
+            DCdisp.displayText("Twitter: @DiversityChall" ,DCUI.Black, 60, 0.7,0.9)
+        else:
+            DCdisp.displayText(contact, DCUI.Black, 60, 0.7,0.9)
         
         questionwords = question.split(" ");
         
@@ -60,12 +77,12 @@ class question:
         for word in questionwords:
             question1 += word + " "
             if word_cnt >= WORD_PER_LINE_LIM:
-                DCdisp.displayText(question1,DCUI.Black,40,0.5,y)
-                y+=0.05
+                DCdisp.displayText(question1,DCUI.Black,50,0.5,y)
+                y+=0.06
                 question1 = ""
                 word_cnt = 1
             elif total_word_cnt >= len(questionwords):
-                DCdisp.displayText(question1,DCUI.Black,40,0.5,y)
+                DCdisp.displayText(question1,DCUI.Black,50,0.5,y)
                 
             word_cnt+=1
             total_word_cnt+=1

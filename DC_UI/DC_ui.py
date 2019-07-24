@@ -27,9 +27,8 @@ class dcui:
         self.DClogoimage = pygame.transform.scale(self.DClogoimage, (int(self.DClogoimage.get_width()/5),int(self.DClogoimage.get_height()/5)))
         self.Mainimage = pygame.transform.scale(self.Mainimage, (int(self.Mainimage.get_width()/12),int(self.Mainimage.get_height()/12)))
         self.Mainimageempty = pygame.transform.scale(self.Mainimageempty, (int(self.Mainimageempty.get_width()),int(self.Mainimageempty.get_height())))
-        
         pygame.display.set_caption('Diversity Challenge')
-        self.main_display = pygame.display.set_mode(self.disp_size) ## rset surface object
+        self.main_display = pygame.display.set_mode(self.disp_size) # set surface object
         self.main_display.fill(White)
         
     def getScreenWidth(self):
@@ -59,6 +58,19 @@ class dcui:
     def updateDisplay(self):
         pygame.display.update()
         self.main_display.fill(White)
+        
+    def displayImage(self,imagename,scale,x,y):
+        pic = pygame.image.load(imagename)
+        
+        
+        w = pic.get_size()[0]
+        h = pic.get_size()[1]
+        
+        while(w > self.width*scale or h > self.height*scale):
+            pic = pygame.transform.scale(pic,(int(w*0.8),int(h*0.8)))
+            w = pic.get_size()[0]
+            h = pic.get_size()[1]
+        self.main_display.blit(pic,self.place(w,h,x,y))
         
     def displayLogo(self):
         self.main_display.blit(self.DClogoimage,(0,+20))

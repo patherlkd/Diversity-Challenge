@@ -15,7 +15,7 @@ MKEYS = [ [1,2,3,'A'],
 def DC_mode(arg):
     switcher = {
         1: "Starter for 10",
-        2: "",
+        2: "Picture Round",
         3: "Decide Winner",
         'A': "",
         4: "",
@@ -104,8 +104,8 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     DCdisp.displayLogo()
     DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
    
-    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,80,0.5,0.7)
-    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,80,0.5,0.9)
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.1)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.2)
     DCdisp.updateDisplay()
     
     allplayers = bteam.getPlayers() + rteam.getPlayers()
@@ -125,9 +125,12 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
     DCQ.DCqu.dispQuestion(DCdisp,question_num)
     if winner.getTeamName() == bteam.getTeamName():
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
+        
     else:
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Red,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
     
     DCdisp.updateDisplay()
     
@@ -137,9 +140,11 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
     DCQ.DCqu.dispQuestion(DCdisp,question_num)
     if winner.getTeamName() == bteam.getTeamName():
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
     else:
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Red,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
     DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.5, 0.95)
     DCdisp.updateDisplay()
     
@@ -232,12 +237,14 @@ def bonusRound(team,DCdisp):
     while(question_count < 3):
         DCdisp.displayLogo()
         DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,50,0.8,0.1)
         DCdisp.updateDisplay()
         sleep(2)
         
         question_num = DCQ.DCqu.dispQuestion(DCdisp,0)
         DCdisp.displayLogo()
         DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,50,0.8,0.1)
         DCdisp.updateDisplay()
     
         winner = None 
@@ -253,9 +260,11 @@ def bonusRound(team,DCdisp):
     
         DCdisp.displayLogo()
         DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,50,0.8,0.1)
         DCQ.DCqu.dispQuestion(DCdisp,question_num)
        
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.DarkGreen,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
        
     
         DCdisp.updateDisplay()
@@ -264,8 +273,10 @@ def bonusRound(team,DCdisp):
     
         DCdisp.displayLogo()
         DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,50,0.8,0.1)
         DCQ.DCqu.dispQuestion(DCdisp,question_num)
-        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.7)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.DarkGreen,80, 0.495, 0.8)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
         DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
     
@@ -276,6 +287,7 @@ def bonusRound(team,DCdisp):
         
         DCdisp.displayLogo()
         DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,50,0.8,0.1)
         DCQ.DCqu.dispAnswer(DCdisp)
         DCdisp.displayText("[1] Correct [2] Incorrect [*] Start another bonus round question",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
@@ -307,3 +319,12 @@ def bonusRound(team,DCdisp):
             if key == '*':
                 finished = 1
     
+def pictureRound(bteam,rteam,DCdisp):
+    DCdisp.displayLogo()
+    DCdisp.displayText("Picture Round",DCUI.Black,60, 0.3, 0.1)
+   
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "  Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.05)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "  Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.1)
+    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_QUESTIONS/questions/picture_round/question_2/image.jpg",0.7,0.5,0.5)
+    DCdisp.updateDisplay()
+    sleep(100)

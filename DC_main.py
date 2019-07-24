@@ -58,13 +58,16 @@ try:
         DCdisp.displayWelcomeEmpty(0.5,0.5)
         DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.2)
         DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.8)
-        DCdisp.displayText("[1] Starter for 10 [2] [3] Decide Winner ",DCUI.Blue,20, 0.5, 0.95)
+        DCdisp.displayText("[1] Starter for 10 [2] Picture Round [3] Decide Winner ",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
         DCdisp.displayLogo()
         mainkey = DCM.keypadEvent()
         if DCM.DC_mode(mainkey) == "Starter for 10":
             incorrect_cnt = 0
             DCM.starter_for_10(bteam,rteam,DCdisp,incorrect_cnt)
+            
+        if DCM.DC_mode(mainkey) == "Picture Round":
+            DCM.pictureRound(bteam,rteam,DCdisp)
         
         if DCM.DC_mode(mainkey) == "Decide Winner":
             DCM.decideWinner(bteam,rteam,DCdisp)
