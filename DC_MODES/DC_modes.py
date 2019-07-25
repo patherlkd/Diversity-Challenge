@@ -4,6 +4,7 @@ import DC_UI.DC_ui as DCUI
 import DC_QUESTIONS.DC_questions as DCQ
 from random import shuffle
 from time import sleep
+import pygame
 
 ## Keys on the physical matrix keypad
 MKEYS = [ [1,2,3,'A'],
@@ -15,7 +16,7 @@ MKEYS = [ [1,2,3,'A'],
 def DC_mode(arg):
     switcher = {
         1: "Starter for 10",
-        2: "Picture Round",
+        2: "Guess the Scientist",
         3: "Decide Winner",
         'A': "",
         4: "",
@@ -26,7 +27,7 @@ def DC_mode(arg):
         8: "",
         9: "",
         'C': "",
-        '*':"",
+        '*':"Quit",
         0:"",
         '#':"",
         'D':""
@@ -55,6 +56,10 @@ def keypadEvent():
             GPIO.output(MCOL[j],1)
         
     return key
+
+def quit():
+    GPIO.cleanup()
+    pygame.quit()
 
 def decideWinner(bteam,rteam,DCdisp):
     #DCdisp.displayLogo()
@@ -207,9 +212,9 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
             if incorrect_cnt < 2:
                 DCdisp.displayLogo()
                 if winner.getTeamName() == bteam.getTeamName():
-                    DCdisp.displayText("Start for 10 just for "+rteam.getTeamName(),DCUI.Red,50, 0.5, 0.5)
+                    DCdisp.displayText("Starter for 10 just for "+rteam.getTeamName(),DCUI.Red,50, 0.5, 0.5)
                 else:
-                    DCdisp.displayText("Start for 10 just for "+bteam.getTeamName(),DCUI.Blue,50, 0.5, 0.5)
+                    DCdisp.displayText("Starter for 10 just for "+bteam.getTeamName(),DCUI.Blue,50, 0.5, 0.5)
                 DCdisp.updateDisplay()
                 sleep(1.5)
             
@@ -319,12 +324,105 @@ def bonusRound(team,DCdisp):
             if key == '*':
                 finished = 1
     
-def pictureRound(bteam,rteam,DCdisp):
+def pictureRound(bteam,rteam,DCdisp,roundnum):
+    
+    if roundnum>=2:
+        return 2
+    
     DCdisp.displayLogo()
-    DCdisp.displayText("Picture Round",DCUI.Black,60, 0.3, 0.1)
+    DCdisp.displayText("Guess the Scientist",DCUI.Black,60, 0.3, 0.1)
    
     DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "  Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.05)
     DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "  Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.1)
-    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_QUESTIONS/questions/picture_round/question_2/image.jpg",0.7,0.5,0.5)
+    picquestionnumber = DCQ.DCqu.dispPicQuestion(DCdisp,0)
     DCdisp.updateDisplay()
-    sleep(100)
+    
+    allplayers = bteam.getPlayers() + rteam.getPlayers()
+    shuffle(allplayers) # Shuffle for fairness
+    
+    winner = None 
+    
+    iswinner = 0 
+    while iswinner == 0: 
+        for p in allplayers:
+            if(p.hasBuzzed()):
+                DCdisp.soundBuzz(0)
+                iswinner=1
+                winner=p
+                
+    DCdisp.displayLogo()
+    DCdisp.displayText("Guess the Scientist",DCUI.Black,60, 0.3, 0.1)
+    
+    if winner.getTeamName() == bteam.getTeamName():
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.9)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.9)
+    else:
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Red,80, 0.495, 0.9)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.9)
+        
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "  Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.05)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "  Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.1)
+    DCQ.DCqu.dispPicQuestion(DCdisp,picquestionnumber)
+    DCdisp.updateDisplay()
+    
+    sleep(3)
+    
+    DCdisp.displayLogo()
+    DCdisp.displayText("Guess the Scientist",DCUI.Black,60, 0.3, 0.1)
+    
+    if winner.getTeamName() == bteam.getTeamName():
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.9)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.9)
+    else:
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Red,80, 0.495, 0.9)
+        DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.9)
+        
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "  Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.05)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "  Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.1)
+    DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.9, 0.95)
+    DCQ.DCqu.dispPicQuestion(DCdisp,picquestionnumber)
+    DCdisp.updateDisplay()
+    
+    key = 'O'
+    while(key != 'A'):
+        key=keypadEvent()
+    
+    DCdisp.displayLogo()
+    DCdisp.displayText("Guess the Scientist",DCUI.Black,60, 0.3, 0.1)
+    DCdisp.displayText("[1] Correct [2] Incorrect [*] Start another Guess the Scientist question",DCUI.Blue,20, 0.5, 0.95)
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "  Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.05)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "  Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.1)
+    DCQ.DCqu.dispPicAnswer(DCdisp,picquestionnumber)
+    DCdisp.updateDisplay()
+    
+    finished=0
+    
+    while(finished==0):
+        key = keypadEvent()
+        if key == 1:
+            DCdisp.displayLogo()
+            DCdisp.displayText("Correct (+10 points)",DCUI.Green,100, 0.5, 0.5)
+            DCdisp.updateDisplay()
+            winner.addTen()
+            sleep(3)
+            finished = 1
+                
+            roundnum +=1
+            
+            pictureRound(bteam,rteam,DCdisp,roundnum)
+            
+        if key == 2:
+            DCdisp.displayLogo()
+            DCdisp.displayText("Incorrect",DCUI.Red,100,0.5,0.5)
+            DCdisp.updateDisplay()
+            sleep(2)
+        
+            finished = 1
+                
+            roundnum += 1
+                
+            pictureRound(bteam,rteam,DCdisp,roundnum)
+            
+        if key == '*':
+            finished = 1
+            pictureRound(bteam,rteam,DCdisp,roundnum)

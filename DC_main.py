@@ -36,14 +36,19 @@ try:
     
     DCdisp.updateDisplay()
     
-    
+    d=0
     for i in range(6):
         d = i*0.1
         DCdisp.updateDisplay()
         DCdisp.displayWelcome(d,0.5)
         sleep(0.03)
-        
-    DCdisp.displayText("Press [1] to start",DCUI.Blue,50,0.5,0.9)
+    
+    DCdisp.displayText("Diversity",DCUI.Black,100,0.4,0.15)
+    DCdisp.displayText("Diversity",DCUI.Blue,100,0.395,0.15)
+    
+    DCdisp.displayText("Challenge",DCUI.Black,100,0.6,0.3)
+    DCdisp.displayText("Challenge",DCUI.Red,100,0.595,0.3)
+    DCdisp.displayText("Press [1] to start",DCUI.Black,40,0.5,0.95)
     DCdisp.updateDisplay()
          
     start = 0
@@ -52,13 +57,12 @@ try:
         if DCM.keypadEvent() == 1:
             start = 1
     
-    
     while(True):
        # DCdisp.displayLogo()
         DCdisp.displayWelcomeEmpty(0.5,0.5)
         DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.2)
         DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.8)
-        DCdisp.displayText("[1] Starter for 10 [2] Picture Round [3] Decide Winner ",DCUI.Blue,20, 0.5, 0.95)
+        DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
         DCdisp.displayLogo()
         mainkey = DCM.keypadEvent()
@@ -66,12 +70,14 @@ try:
             incorrect_cnt = 0
             DCM.starter_for_10(bteam,rteam,DCdisp,incorrect_cnt)
             
-        if DCM.DC_mode(mainkey) == "Picture Round":
-            DCM.pictureRound(bteam,rteam,DCdisp)
+        if DCM.DC_mode(mainkey) == "Guess the Scientist":
+            DCM.pictureRound(bteam,rteam,DCdisp,0)
         
         if DCM.DC_mode(mainkey) == "Decide Winner":
             DCM.decideWinner(bteam,rteam,DCdisp)
-                       
+        
+        if DCM.DC_mode(mainkey) == "Quit":
+            DCM.quit()
            
             
 except KeyboardInterrupt:

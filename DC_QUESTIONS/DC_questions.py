@@ -13,7 +13,9 @@ class question:
         self.questionsfile = "DC_QUESTIONS/questions/questions.csv"
         
         self.questionsblacklist = []
-        self.Nquestions = 0 
+        self.picquestionsblacklist = []
+        self.Nquestions = 0
+        self.folders = 0
         with open(self.questionsfile) as csvfile:
             readCSV = csv.reader(csvfile, delimiter=',')
             for row in readCSV:
@@ -110,5 +112,62 @@ class question:
             word_cnt+=1
             total_word_cnt+=1
        
-
+    def dispPicQuestion(self,DCdisp,folder):
+        self.picpath = "/home/pi/Documents/Diversity_Challenge/DC_QUESTIONS/questions/picture_round/"
+        if self.folders == 0:
+            
+            for _, dirnames, filenames in os.walk(self.picpath):
+                self.folders += len(dirnames)
+        
+        try_cnt=1
+        while(folder==0):
+            folder = random.choice(range(self.folders)) + 1
+          
+           
+            if try_cnt == self.folders:
+                DCdisp.displayText("NO MORE PICTURES IN DATABASE",DCUI.Red,80,0.5,0.5)
+                return 0
+            for i in self.picquestionsblacklist:
+                if folder == i:
+                    folder=0
+        
+            try_cnt+=1
+        
+        if try_cnt > 1:
+            self.picquestionsblacklist.append(folder)
+        
+        DCdisp.displayImage(self.picpath+"question_"+str(folder)+"/image.jpg",0.7,0.5,0.5)
+        print("folder num: "+str(folder))
+        
+        return folder
+    
+    def dispPicAnswer(self,DCdisp,folder):
+        
+        info = ""
+        f = open(self.picpath+"question_"+str(folder)+"/info.txt",encoding='utf-8')
+        info += f.read()
+        f.close()
+        
+        infowords = info.split(" ");
+        
+        info1 = ""
+        word_cnt = 1
+        total_word_cnt = 1
+        
+        y = 0.4
+        
+        for word in infowords:
+            info1 += word + " "
+            if word_cnt >= WORD_PER_LINE_LIM:
+                DCdisp.displayText(info1,DCUI.Black,40,0.5,y)
+                y+=0.06
+                info1 = ""
+                word_cnt = 1
+            elif total_word_cnt >= len(infowords):
+                DCdisp.displayText(info1[:-2],DCUI.Black,40,0.5,y)
+                
+            word_cnt+=1
+            total_word_cnt+=1
+        
+        
 DCqu = question()
