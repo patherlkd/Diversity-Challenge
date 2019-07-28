@@ -24,7 +24,8 @@ class question:
         print("Number of questions in database: ",self.Nquestions-1)
         
     def dispQuestion(self,DCdisp,question_num):
-
+        
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.6)
         try_cnt=1
         while(question_num==0):
             question_num = random.choice(range(self.Nquestions))
@@ -59,14 +60,14 @@ class question:
                question_cnt+=1
         
         if author =="":
-            DCdisp.displayText("DC Team",DCUI.DarkGreen,60,0.3,0.9)
+            DCdisp.displayText("DC Team",DCUI.DarkGreen,50,0.3,0.95)
         else:
-            DCdisp.displayText(author,DCUI.DarkGreen,60,0.3,0.9)
+            DCdisp.displayText(author,DCUI.DarkGreen,50,0.3,0.95)
         
         if contact =="":
-            DCdisp.displayText("Twitter: @DiversityChall" ,DCUI.Black, 60, 0.7,0.9)
+            DCdisp.displayText("Twitter: @DiversityChall" ,DCUI.Black, 50, 0.7,0.95)
         else:
-            DCdisp.displayText(contact, DCUI.Black, 60, 0.7,0.9)
+            DCdisp.displayText(contact, DCUI.Black, 50, 0.7,0.95)
         
         questionwords = question.split(" ");
         
@@ -158,13 +159,13 @@ class question:
         
         for word in infowords:
             info1 += word + " "
-            if word_cnt >= WORD_PER_LINE_LIM:
-                DCdisp.displayText(info1,DCUI.Black,40,0.5,y)
-                y+=0.06
+            if word_cnt >= WORD_PER_LINE_LIM_ANS:
+                DCdisp.displayText(info1,DCUI.Black,70,0.5,y)
+                y+=0.07
                 info1 = ""
                 word_cnt = 1
             elif total_word_cnt >= len(infowords):
-                DCdisp.displayText(info1[:-2],DCUI.Black,40,0.5,y)
+                DCdisp.displayText(info1[:-2],DCUI.Black,70,0.5,y)
                 
             word_cnt+=1
             total_word_cnt+=1

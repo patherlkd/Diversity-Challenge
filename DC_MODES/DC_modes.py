@@ -108,7 +108,7 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     
     DCdisp.displayLogo()
     DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.2)
-   
+    
     DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,50,0.8,0.1)
     DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,50,0.8,0.2)
     DCdisp.updateDisplay()
@@ -169,7 +169,10 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
         key = keypadEvent()
         if key == 1:
             DCdisp.displayLogo()
-            DCdisp.displayText("Correct (+10 points)",DCUI.Green,100, 0.5, 0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.1,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Correct.png",0.4,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.9,0.5)
+            DCdisp.displayText("(+10 points)",DCUI.Green,100, 0.5, 0.8)
             DCdisp.updateDisplay()
             winner.addTen()
             sleep(3)
@@ -178,7 +181,9 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
             
         if key == 2:
             DCdisp.displayLogo()
-            DCdisp.displayText("Incorrect",DCUI.Red,100,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_sad.png",0.3,0.1,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Incorrect.png",0.4,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_laughing.png",0.3,0.9,0.5)
             DCdisp.updateDisplay()
             sleep(2)
             
@@ -202,7 +207,10 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
             
         if key == 3:
             DCdisp.displayLogo()
-            DCdisp.displayText("Incorrect (-5 points for interruption)",DCUI.Red,60, 0.5, 0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_shushing.png",0.3,0.1,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Incorrect.png",0.4,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_dizzy.png",0.3,0.9,0.5)
+            DCdisp.displayText("(-5 points for interruption)",DCUI.Red,60, 0.5, 0.9)
             DCdisp.updateDisplay()
             winner.minusFive()
             sleep(2)
@@ -212,11 +220,11 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
             if incorrect_cnt < 2:
                 DCdisp.displayLogo()
                 if winner.getTeamName() == bteam.getTeamName():
-                    DCdisp.displayText("Starter for 10 just for "+rteam.getTeamName(),DCUI.Red,50, 0.5, 0.5)
+                    DCdisp.displayText("Starter for 10 just for "+rteam.getTeamName(),DCUI.Red,60, 0.5, 0.5)
                 else:
-                    DCdisp.displayText("Starter for 10 just for "+bteam.getTeamName(),DCUI.Blue,50, 0.5, 0.5)
+                    DCdisp.displayText("Starter for 10 just for "+bteam.getTeamName(),DCUI.Blue,60, 0.5, 0.5)
                 DCdisp.updateDisplay()
-                sleep(1.5)
+                sleep(2.5)
             
             if winner.getTeamName() == bteam.getTeamName():
                 starter_for_10(rteam,rteam,DCdisp,incorrect_cnt)
@@ -303,7 +311,11 @@ def bonusRound(team,DCdisp):
             key = keypadEvent()
             if key == 1:
                 DCdisp.displayLogo()
-                DCdisp.displayText("Correct (+5 points)",DCUI.Green,100, 0.5, 0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.1,0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Correct.png",0.4,0.5,0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.9,0.5)
+                DCdisp.displayText("(+5 points)",DCUI.Green,100, 0.5, 0.8)
+               
                 DCdisp.updateDisplay()
                 winner.addFive()
                 sleep(3)
@@ -313,7 +325,10 @@ def bonusRound(team,DCdisp):
             
             if key == 2:
                 DCdisp.displayLogo()
-                DCdisp.displayText("Incorrect",DCUI.Red,100,0.5,0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_sad.png",0.3,0.1,0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Incorrect.png",0.4,0.5,0.5)
+                DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_laughing.png",0.3,0.9,0.5)
+               
                 DCdisp.updateDisplay()
                 sleep(2)
             
@@ -401,7 +416,11 @@ def pictureRound(bteam,rteam,DCdisp,roundnum):
         key = keypadEvent()
         if key == 1:
             DCdisp.displayLogo()
-            DCdisp.displayText("Correct (+10 points)",DCUI.Green,100, 0.5, 0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.1,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Correct.png",0.4,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Fire.png",0.3,0.9,0.5)
+            DCdisp.displayText("(+10 points)",DCUI.Green,100, 0.5, 0.8)
+          
             DCdisp.updateDisplay()
             winner.addTen()
             sleep(3)
@@ -413,7 +432,9 @@ def pictureRound(bteam,rteam,DCdisp,roundnum):
             
         if key == 2:
             DCdisp.displayLogo()
-            DCdisp.displayText("Incorrect",DCUI.Red,100,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_sad.png",0.3,0.1,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Incorrect.png",0.4,0.5,0.5)
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Face_laughing.png",0.3,0.9,0.5)
             DCdisp.updateDisplay()
             sleep(2)
         

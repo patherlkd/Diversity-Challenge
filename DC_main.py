@@ -48,6 +48,7 @@ try:
     
     DCdisp.displayText("Challenge",DCUI.Black,100,0.6,0.3)
     DCdisp.displayText("Challenge",DCUI.Red,100,0.595,0.3)
+    DCdisp.displayText("Created by Luke Kristopher Davis",DCUI.Black,30,0.2,0.95)
     DCdisp.displayText("Press [1] to start",DCUI.Black,40,0.5,0.95)
     DCdisp.updateDisplay()
          
@@ -59,8 +60,11 @@ try:
     
     while(True):
        # DCdisp.displayLogo()
-        DCdisp.displayWelcomeEmpty(0.5,0.5)
-        DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.2)
+        #DCdisp.displayWelcomeEmpty(0.5,0.5)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/DC_icon.png",0.4,0.5,0.2)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.7,0.5)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.7,0.8)
+        DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.5)
         DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.8)
         DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.95)
         DCdisp.updateDisplay()
