@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for i in `seq 21 30`;
+do
+	mkdir question_$i
+done

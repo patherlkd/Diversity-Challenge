@@ -5,8 +5,8 @@ import pygame
 import RPi.GPIO as GPIO
 import DC_UI.DC_ui as DCUI
 
-WORD_PER_LINE_LIM = 8
-WORD_PER_LINE_LIM_ANS = 3
+WORD_PER_LINE_LIM = 7
+WORD_PER_LINE_LIM_ANS = 4
 
 class question:
     def __init__(self):
@@ -23,9 +23,19 @@ class question:
         
         print("Number of questions in database: ",self.Nquestions-1)
         
+        
+    def getRemaining(self):
+        
+        self.questionsblacklist = list(dict.fromkeys(self.questionsblacklist))
+        return (self.Nquestions-1)-len(self.questionsblacklist)
+    
+    def getRemainingPics(self):
+        
+        return (self.folders)-len(self.picquestionsblacklist)
+    
     def dispQuestion(self,DCdisp,question_num):
         
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.6)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.5,0.5,0.6)
         try_cnt=1
         while(question_num==0):
             question_num = random.choice(range(self.Nquestions))
@@ -60,12 +70,12 @@ class question:
                question_cnt+=1
         
         if author =="":
-            DCdisp.displayText("DC Team",DCUI.DarkGreen,50,0.3,0.95)
+            DCdisp.displayText("",DCUI.DarkGreen,50,0.3,0.95)
         else:
             DCdisp.displayText(author,DCUI.DarkGreen,50,0.3,0.95)
         
         if contact =="":
-            DCdisp.displayText("Twitter: @DiversityChall" ,DCUI.Black, 50, 0.7,0.95)
+            DCdisp.displayText("@DiversityChall" ,DCUI.Black, 50, 0.7,0.95)
         else:
             DCdisp.displayText(contact, DCUI.Black, 50, 0.7,0.95)
         
@@ -80,12 +90,12 @@ class question:
         for word in questionwords:
             question1 += word + " "
             if word_cnt >= WORD_PER_LINE_LIM:
-                DCdisp.displayText(question1,DCUI.Black,50,0.5,y)
+                DCdisp.displayText(question1,DCUI.Black,47,0.5,y)
                 y+=0.06
                 question1 = ""
                 word_cnt = 1
             elif total_word_cnt >= len(questionwords):
-                DCdisp.displayText(question1,DCUI.Black,50,0.5,y)
+                DCdisp.displayText(question1,DCUI.Black,47,0.5,y)
                 
             word_cnt+=1
             total_word_cnt+=1
@@ -103,12 +113,12 @@ class question:
         for word in answerwords:
             ans1 += word + " "
             if word_cnt >= WORD_PER_LINE_LIM_ANS:
-                DCdisp.displayText(ans1,DCUI.DarkGreen,80,0.5,y)
+                DCdisp.displayText(ans1,DCUI.DarkGreen,70,0.5,y)
                 y+=0.1
                 ans1 = ""
                 word_cnt = 1
             elif total_word_cnt >= len(answerwords):
-                DCdisp.displayText(ans1,DCUI.DarkGreen,80,0.5,y)
+                DCdisp.displayText(ans1,DCUI.DarkGreen,70,0.5,y)
                 
             word_cnt+=1
             total_word_cnt+=1

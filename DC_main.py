@@ -8,13 +8,13 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 ## make two instances of teams
-bteam_players = ("Player 1","Player 2","Player 3")
-bteam_GPIOs = [18,23,24]
-rteam_players = ("Player 1","Player 2","Player 3")
-rteam_GPIOs = [5,6,13]
+bteam_players = ("Cathy","Esther","Natalie","Nira")
+bteam_GPIOs = [18,23,24,25]
+rteam_players = ("Alfredo","Jessica","Chris","Lakechia")
+rteam_GPIOs = [5,6,13,19]
 
-bteam = DCT.team(3,"Blue",bteam_players,bteam_GPIOs)
-rteam = DCT.team(3,"Red",rteam_players,rteam_GPIOs)
+bteam = DCT.team(4,"Cheung",bteam_players,bteam_GPIOs)
+rteam = DCT.team(4,"Jackson",rteam_players,rteam_GPIOs)
 
 ## Set button inputs
 bteam.setGPIOs()
@@ -30,7 +30,7 @@ for i in range(4):
     GPIO.setup(DCM.MROW[i],GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 ## Setup and initialize pygame screen object
-DCdisp = DCUI.dcui(1776,1000)
+DCdisp = DCUI.dcui(1700,1000)
 
 try:
     
@@ -42,6 +42,8 @@ try:
         DCdisp.updateDisplay()
         DCdisp.displayWelcome(d,0.5)
         sleep(0.03)
+    
+    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.5,0.5,0.125)
     
     DCdisp.displayText("Diversity",DCUI.Black,100,0.4,0.15)
     DCdisp.displayText("Diversity",DCUI.Blue,100,0.395,0.15)
@@ -61,12 +63,32 @@ try:
     while(True):
        # DCdisp.displayLogo()
         #DCdisp.displayWelcomeEmpty(0.5,0.5)
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/DC_icon.png",0.4,0.5,0.2)
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.7,0.5)
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.7,0.8)
-        DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.5)
-        DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.8)
-        DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.95)
+      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/DC_icon.png",0.4,0.5,0.2)
+      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.75,0.1)
+      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.75,0.55)
+        
+       # DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.25)
+       # DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.7)
+
+        DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.1)
+        DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.55)
+        players = bteam.getPlayers()
+        xpos = 0.2
+        
+        for p in players:
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_TEAM/contestants/"+p.getPlayerName()+"_DC_badge.png",0.25,xpos,0.3)
+            DCdisp.displayText(p.getPlayerName(),DCUI.Blue,47,xpos,0.45)
+            xpos = xpos + 0.2
+        
+        players = rteam.getPlayers()
+        xpos = 0.2
+        
+        for p in players:
+            DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_TEAM/contestants/"+p.getPlayerName()+"_DC_badge.png",0.25,xpos,0.75)
+            DCdisp.displayText(p.getPlayerName(),DCUI.Red,47,xpos,0.9)
+            xpos = xpos + 0.2
+        
+        DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.975)
         DCdisp.updateDisplay()
         DCdisp.displayLogo()
         mainkey = DCM.keypadEvent()
