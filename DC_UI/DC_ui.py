@@ -66,10 +66,32 @@ class dcui:
         w = pic.get_size()[0]
         h = pic.get_size()[1]
         
-        while(w > self.width*scale or h > self.height*scale):
-            pic = pygame.transform.scale(pic,(int(w*0.8),int(h*0.8)))
-            w = pic.get_size()[0]
-            h = pic.get_size()[1]
+        aw = (self.width*scale)/w
+        ah = (self.width*scale)/w
+        
+        pic = pygame.transform.scale(pic,(int(w*aw),int(h*ah)))
+        
+        w = pic.get_size()[0]
+        h = pic.get_size()[1]
+        
+        aw = (self.height*scale)/h
+        ah = (self.height*scale)/h
+        
+        pic = pygame.transform.scale(pic,(int(w*aw),int(h*ah)))
+        
+        w = pic.get_size()[0]
+        h = pic.get_size()[1]
+        
+        
+        #while(w < self.width*scale or h < self.height*scale): # ensure it's big enough
+         #   pic = pygame.transform.scale(pic,(int(w*1.2),int(h*1.2)))
+          #  w = pic.get_size()[0]
+           # h = pic.get_size()[1]
+        
+       # while(w > self.width*scale or h > self.height*scale): # ensure no too big
+        #    pic = pygame.transform.scale(pic,(int(w*0.8),int(h*0.8)))
+         #   w = pic.get_size()[0]
+          #  h = pic.get_size()[1]
         self.main_display.blit(pic,self.place(w,h,x,y))
         
     def displayLogo(self):

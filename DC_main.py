@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import DC_UI.DC_ui as DCUI
 import DC_TEAM.DC_team as DCT
 import DC_MODES.DC_modes as DCM
+import time
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
@@ -36,6 +37,8 @@ try:
     
     DCdisp.updateDisplay()
     
+   
+    
     d=0
     for i in range(6):
         d = i*0.1
@@ -43,7 +46,7 @@ try:
         DCdisp.displayWelcome(d,0.5)
         sleep(0.03)
     
-    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.5,0.5,0.125)
+    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.0,0.5,0.06)
     
     DCdisp.displayText("Diversity",DCUI.Black,100,0.4,0.15)
     DCdisp.displayText("Diversity",DCUI.Blue,100,0.395,0.15)
@@ -53,23 +56,29 @@ try:
     DCdisp.displayText("Created by Luke Kristopher Davis",DCUI.Black,30,0.2,0.95)
     DCdisp.displayText("Press [1] to start",DCUI.Black,40,0.5,0.95)
     DCdisp.updateDisplay()
-         
+               
     start = 0
-      
     while(not start):
         if DCM.keypadEvent() == 1:
             start = 1
-    
-    while(True):
-       # DCdisp.displayLogo()
-        #DCdisp.displayWelcomeEmpty(0.5,0.5)
-      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/DC_icon.png",0.4,0.5,0.2)
-      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.75,0.1)
-      #  DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/Empty_box.png",0.4,0.75,0.55)
-        
-       # DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.25)
-       # DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.2,0.5,0.7)
 
+    start_time = time.time()
+    ENDTIME = 50*60
+    
+    final_round_announced = 0
+
+    while(True):
+        current_time = time.time()
+        
+        
+        if final_round_announced:
+            DCM.decideWinner(bteam,rteam,DCdisp)
+        
+        if current_time - start_time >= ENDTIME and not final_round_announced:
+            DCdisp.displayText("FINAL ROUND",DCUI.Red,100,0.5,0.5)
+            DCdisp.updateDisplay()
+            final_round_announced = 1
+        
         DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.1)
         DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.55)
         players = bteam.getPlayers()

@@ -35,7 +35,7 @@ class question:
     
     def dispQuestion(self,DCdisp,question_num):
         
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.5,0.5,0.6)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.0,0.5,0.65)
         try_cnt=1
         while(question_num==0):
             question_num = random.choice(range(self.Nquestions))
@@ -148,7 +148,7 @@ class question:
             self.picquestionsblacklist.append(folder)
         
         DCdisp.displayImage(self.picpath+"question_"+str(folder)+"/image.jpg",0.7,0.5,0.5)
-        print("folder num: "+str(folder))
+       
         
         return folder
     
