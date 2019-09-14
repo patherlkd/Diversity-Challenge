@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `seq 21 30`;
+for i in `seq 71 100`;
 do
 	touch question_$i/info.txt
 done

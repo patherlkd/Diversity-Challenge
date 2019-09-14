@@ -9,9 +9,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 ## make two instances of teams
-bteam_players = ("Cathy","Esther","Natalie","Nira")
+bteam_players = ("Abbot","Odekunle","Cheung","Chamberlain")
 bteam_GPIOs = [18,23,24,25]
-rteam_players = ("Alfredo","Jessica","Chris","Lakechia")
+rteam_players = ("Carpineti","Boland","Jackson","Jeanne")
 rteam_GPIOs = [5,6,13,19]
 
 bteam = DCT.team(4,"Cheung",bteam_players,bteam_GPIOs)
@@ -99,7 +99,7 @@ try:
         
         DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.975)
         DCdisp.updateDisplay()
-        DCdisp.displayLogo()
+       # DCdisp.displayLogo()
         mainkey = DCM.keypadEvent()
         if DCM.DC_mode(mainkey) == "Starter for 10":
             incorrect_cnt = 0

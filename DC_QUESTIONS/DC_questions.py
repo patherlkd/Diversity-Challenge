@@ -5,7 +5,7 @@ import pygame
 import RPi.GPIO as GPIO
 import DC_UI.DC_ui as DCUI
 
-WORD_PER_LINE_LIM = 7
+WORD_PER_LINE_LIM = 6
 WORD_PER_LINE_LIM_ANS = 4
 
 class question:
@@ -35,7 +35,7 @@ class question:
     
     def dispQuestion(self,DCdisp,question_num):
         
-        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.0,0.5,0.65)
+        DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_UI/images/Game_images/"+"Empty_box.png",1.5,0.5,0.65)
         try_cnt=1
         while(question_num==0):
             question_num = random.choice(range(self.Nquestions))
@@ -85,17 +85,19 @@ class question:
         word_cnt = 1
         total_word_cnt = 1
         
-        y = 0.4
+        y = 0.25
         
         for word in questionwords:
             question1 += word + " "
             if word_cnt >= WORD_PER_LINE_LIM:
-                DCdisp.displayText(question1,DCUI.Black,47,0.5,y)
-                y+=0.06
+                DCdisp.displayText(question1,DCUI.Black,55,0.5,y)
+                y+=0.08
                 question1 = ""
                 word_cnt = 1
+                total_word_cnt+=1
+                continue
             elif total_word_cnt >= len(questionwords):
-                DCdisp.displayText(question1,DCUI.Black,47,0.5,y)
+                DCdisp.displayText(question1,DCUI.Black,55,0.5,y)
                 
             word_cnt+=1
             total_word_cnt+=1

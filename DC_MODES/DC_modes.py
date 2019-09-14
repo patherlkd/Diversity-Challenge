@@ -117,12 +117,11 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     
     question_num = DCQ.DCqu.dispQuestion(DCdisp,0)
     
-    DCdisp.displayLogo()
-    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.3, 0.2)
+    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.3, 0.05)
     
-    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,47,0.7,0.1)
-    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,47,0.7,0.2)
+    DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,47,0.7,0.05)
+    DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,47,0.7,0.1)
     DCdisp.updateDisplay()
     
     allplayers = bteam.getPlayers() + rteam.getPlayers()
@@ -143,8 +142,7 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
     
     while(Nsecs >= 0):
         DCdisp.displayLogo()
-        #DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.3, 0.2)
-        #DCQ.DCqu.dispQuestion(DCdisp,question_num)
+        
         if winner.getTeamName() == bteam.getTeamName():
             DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.8)
             DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
@@ -162,9 +160,8 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
         sleep(1)
         Nsecs -= 1
     
-    DCdisp.displayLogo()
-    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.3, 0.2)
+    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.05)
     DCQ.DCqu.dispQuestion(DCdisp,question_num)
     if winner.getTeamName() == bteam.getTeamName():
         DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Blue,80, 0.495, 0.8)
@@ -173,18 +170,18 @@ def starter_for_10(bteam,rteam,DCdisp,incorrect_cnt): # Start of a round
         DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Red,80, 0.495, 0.8)
         DCdisp.displayText(winner.getPlayerName()+"  #TEAM "+winner.getTeamName(),DCUI.Black,80, 0.5, 0.8)
         
-    DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_TEAM/contestants/"+winner.getPlayerName()+"_DC_badge.png",0.3,0.8,0.15)        
+   # DCdisp.displayImage("/home/pi/Documents/Diversity_Challenge/DC_TEAM/contestants/"+winner.getPlayerName()+"_DC_badge.png",0.3,0.8,0.15)        
 
-    DCdisp.displayText("[A] Display Answer",DCUI.Blue,20, 0.1, 0.95)
+    DCdisp.displayText("[A] Display Answer",DCUI.Blue,10, 0.05, 0.975)
     DCdisp.updateDisplay()
     
     key = '0'
     while(key != 'A'):
         key = keypadEvent()
             
-    DCdisp.displayLogo()
-    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.3, 0.2)
+   # DCdisp.displayLogo()
+    DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+    DCdisp.displayText("Starter for 10",DCUI.Black,60, 0.5, 0.05)
     DCQ.DCqu.dispAnswer(DCdisp)
     DCdisp.displayText("[1] Correct [2] Incorrect [3] Incorrect Interruption [*] Restart starter for 10",DCUI.Blue,20, 0.5, 0.95)
     DCdisp.updateDisplay()
@@ -274,17 +271,15 @@ def bonusRound(team,DCdisp):
     
     question_count = 0
     while(question_count < 3):
-        DCdisp.displayLogo()
-        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.3, 0.05)
         DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,47,0.7,0.1)
         DCdisp.updateDisplay()
         sleep(2)
         
         question_num = DCQ.DCqu.dispQuestion(DCdisp,0)
-        DCdisp.displayLogo()
-        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.3, 0.05)
         DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,47,0.7,0.1)
         DCdisp.updateDisplay()
     
@@ -302,9 +297,9 @@ def bonusRound(team,DCdisp):
         Nsecs = 5
         
         while(Nsecs >= 0):
-            DCdisp.displayLogo()
-            DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-            DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+            
+            DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+            DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.3, 0.05)
             DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,47,0.7,0.1)
             #DCQ.DCqu.dispQuestion(DCdisp,question_num)
        
@@ -317,9 +312,9 @@ def bonusRound(team,DCdisp):
             sleep(1)
             Nsecs -= 1
     
-        DCdisp.displayLogo()
-        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        
+        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.3, 0.05)
         DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,47,0.7,0.1)
         DCQ.DCqu.dispQuestion(DCdisp,question_num)
         #DCdisp.displayText("  #TEAM "+winner.getTeamName(),DCUI.DarkGreen,80, 0.495, 0.8)
@@ -332,9 +327,9 @@ def bonusRound(team,DCdisp):
         while(key != 'A'):
             key = keypadEvent()
         
-        DCdisp.displayLogo()
-        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,40,0.2,0.05)
-        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.5, 0.2)
+        #DCdisp.displayLogo()
+        DCdisp.displayText("Questions remaining: "+str(DCQ.DCqu.getRemaining()),DCUI.Red,20,0.1,0.05)
+        DCdisp.displayText("Bonus Round",DCUI.Black,60, 0.3, 0.05)
         DCdisp.displayText("#TEAM "+team.getTeamName()+ "    Score: "+str(team.getTotalScore()),DCUI.DarkGreen,47,0.7,0.05)
         DCQ.DCqu.dispAnswer(DCdisp)
         DCdisp.displayText("[1] Correct [2] Incorrect [*] Start another bonus round question",DCUI.Blue,20, 0.5, 0.95)
@@ -376,7 +371,7 @@ def bonusRound(team,DCdisp):
     
 def pictureRound(bteam,rteam,DCdisp,roundnum):
     
-    if roundnum>=2:
+    if roundnum>=3:
         return 2
     
     DCdisp.displayLogo()
