@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for i in `seq 13 20`;
-do
-	mkdir question_$i
-done
