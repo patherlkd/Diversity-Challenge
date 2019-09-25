@@ -1,10 +1,11 @@
-import RPi.GPIO as GPIO
-import DC_UI.DC_ui as DCUI
-import DC_TEAM.DC_team as DCT
-import DC_MODES.DC_modes as DCM
-import time
-from time import sleep
+import RPi.GPIO as GPIO #Raspberry Pi library
+import DC_UI.DC_ui as DCUI #DC user interface library
+import DC_TEAM.DC_team as DCT #DC team library 
+import DC_MODES.DC_modes as DCM #DC modes library
+import time #Time library
+from time import sleep #function to sleep
 
+## Set RPi mode to IO numbers (see Pi manual)
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -14,6 +15,7 @@ bteam_GPIOs = [18,23,24,25]
 rteam_players = ("Carpineti","Boland","Jackson","Jeanne")
 rteam_GPIOs = [5,6,13,19]
 
+##Set the team name and send inputs
 bteam = DCT.team(4,"Cheung",bteam_players,bteam_GPIOs)
 rteam = DCT.team(4,"Jackson",rteam_players,rteam_GPIOs)
 
@@ -36,9 +38,7 @@ DCdisp = DCUI.dcui(1700,1000)
 try:
     
     DCdisp.updateDisplay()
-    
-   
-    
+       
     d=0
     for i in range(6):
         d = i*0.1
@@ -62,11 +62,15 @@ try:
         if DCM.keypadEvent() == 1:
             start = 1
 
+    ## Begin timer
     start_time = time.time()
+
+    ## Final Round message will occur at 50*60 seconds i.e. 50 minutes
     ENDTIME = 50*60
     
     final_round_announced = 0
 
+    ## Main game loop
     while(True):
         current_time = time.time()
         
@@ -81,6 +85,9 @@ try:
         
         DCdisp.displayText("#TEAM "+bteam.getTeamName()+ "    Score: "+str(bteam.getTotalScore()),DCUI.Blue,100,0.5,0.1)
         DCdisp.displayText("#TEAM "+rteam.getTeamName()+ "    Score: "+str(rteam.getTotalScore()),DCUI.Red,100,0.5,0.55)
+        
+        ## Display player pictures and names
+
         players = bteam.getPlayers()
         xpos = 0.2
         
@@ -97,14 +104,20 @@ try:
             DCdisp.displayText(p.getPlayerName(),DCUI.Red,47,xpos,0.9)
             xpos = xpos + 0.2
         
+        ## Display button presses
+
         DCdisp.displayText("[1] Starter for 10 | [2] Picture Round | [3] Decide Winner | [*] Quit",DCUI.Blue,20, 0.5, 0.975)
         DCdisp.updateDisplay()
-       # DCdisp.displayLogo()
+       
+
+        ## Wait for keypad press
         mainkey = DCM.keypadEvent()
+
+        ## Enter the "Starter for 10" mode
         if DCM.DC_mode(mainkey) == "Starter for 10":
             incorrect_cnt = 0
             DCM.starter_for_10(bteam,rteam,DCdisp,incorrect_cnt)
-            
+
         if DCM.DC_mode(mainkey) == "Guess the Scientist":
             DCM.pictureRound(bteam,rteam,DCdisp,0)
         

@@ -1,5 +1,9 @@
-import pygame
+# Class dealing with graphical user interface
+
+import pygame #pygame
 from time import sleep
+
+## Defining colours
 
 Black = [0, 0, 0]
 White = [255,255,255]
@@ -37,6 +41,7 @@ class dcui:
     def getScreenHeight(self):
         return self.height
     
+    ## Return position on screen from fractions of x and y height
     def place(self,objwidth,objheight,xfrac,yfrac):
         if xfrac < 0.0:
             xfrac = 0.0
@@ -55,13 +60,13 @@ class dcui:
         
         return position
         
+    ## Shorthand to update display and fill white    
     def updateDisplay(self):
         pygame.display.update()
         self.main_display.fill(White)
         
     def displayImage(self,imagename,scale,x,y):
         pic = pygame.image.load(imagename)
-        
         
         w = pic.get_size()[0]
         h = pic.get_size()[1]
@@ -82,16 +87,6 @@ class dcui:
         w = pic.get_size()[0]
         h = pic.get_size()[1]
         
-        
-        #while(w < self.width*scale or h < self.height*scale): # ensure it's big enough
-         #   pic = pygame.transform.scale(pic,(int(w*1.2),int(h*1.2)))
-          #  w = pic.get_size()[0]
-           # h = pic.get_size()[1]
-        
-       # while(w > self.width*scale or h > self.height*scale): # ensure no too big
-        #    pic = pygame.transform.scale(pic,(int(w*0.8),int(h*0.8)))
-         #   w = pic.get_size()[0]
-          #  h = pic.get_size()[1]
         self.main_display.blit(pic,self.place(w,h,x,y))
         
     def displayLogo(self):

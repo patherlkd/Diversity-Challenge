@@ -1,17 +1,23 @@
-import csv
-import os
+import csv # library for csv files
+import os # os library
 import random
 import pygame
 import RPi.GPIO as GPIO
 import DC_UI.DC_ui as DCUI
 
+# how many words on a line for the questions
 WORD_PER_LINE_LIM = 6
+
+# how many words on a line for the answers
 WORD_PER_LINE_LIM_ANS = 4
 
 class question:
     def __init__(self):
+
+        # where the questions are
         self.questionsfile = "DC_QUESTIONS/questions/questions.csv"
         
+        # list to contain blacklisted questions (have already shown)
         self.questionsblacklist = []
         self.picquestionsblacklist = []
         self.Nquestions = 0
@@ -69,6 +75,7 @@ class question:
                    self.answer = row[6]
                question_cnt+=1
         
+        # These if statements display the default author and social media handle if none are given
         if author =="":
             DCdisp.displayText("",DCUI.DarkGreen,50,0.3,0.95)
         else:
@@ -182,5 +189,5 @@ class question:
             word_cnt+=1
             total_word_cnt+=1
         
-        
+# Initialise the DCqu object
 DCqu = question()
