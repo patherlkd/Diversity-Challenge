@@ -34,6 +34,20 @@ git clone https://github.com/patherlkd/Diversity-Challenge.git
 ```
 , if you get any error messages please see this guide: https://help.github.com/en/articles/cloning-a-repository. To check the code works change to the Diversity-Challenge directory `cd Diversity-Challenge` and run `python3.6 DC_main.py`, the start screen should appear.
 
+### Running the code
+
+To run the code as it is (HDMI audio) execute
+
+```
+python3.6 DC_main.py
+```
+or to run with Aux audio output, un-comment and comment out the relevant lines and execute
+
+```
+bash diversity_challenge.sh
+```
+which may require root access, but on the RPi it should be fine.
+
 ### Adding questions
 
 The Diversity Challenge code requires a database of questions. This database is located at
@@ -56,3 +70,5 @@ In the `DC_main.py` file you can see the `bteam_players = ("Abbot","Odekunle","C
 > DC_TEAM/contestants
 
 for example `Abbot` has a picture named `Abbot_DC_badge.png`. **If you want to change `Abbot` to `John` you must create a picture named `John_DC_badge.png`**.
+
+You can also add new modes to the main menu through amendments of the `DC_mode` dictionary located in `DC_modes.py`. For example, if you were making a revision tool for your exams you could make a mode for each of your subjects and make separate databases for them.
