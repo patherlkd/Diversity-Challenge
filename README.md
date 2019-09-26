@@ -13,8 +13,8 @@ These instructions will enable you to run the software, how to add questions, an
 ```
 1. A Raspberry Pi 3 Model B+ (what it was originally used on)
 2. Raspbian installed
-3. Pygame and its dependencies https://www.pygame.org/wiki/GettingStarted
-4. Diversity Challenge buzzer setup (see hardware.pdf)
+3. [Pygame and its dependencies](https://www.pygame.org/wiki/GettingStarted)
+4. Diversity Challenge buzzer setup
 ```
 
 ### Installing the code
@@ -28,4 +28,11 @@ Open the terminal on your Raspberry Pi (RPi) and type `ls`. It should say
 ```
 git clone https://github.com/patherlkd/Diversity-Challenge.git
 ```
-, if you get any error messages please see this guide: https://help.github.com/en/articles/cloning-a-repository
+, if you get any error messages please see this guide: https://help.github.com/en/articles/cloning-a-repository. To check the code works change to the Diversity-Challenge directory `cd Diversity-Challenge` and run `python3.6 DC_main.py`, the start screen should appear.
+
+### Adding questions
+
+The Diversity Challenge code requires a database of questions. This database is located at
+> DC_QUESTIONS/questions/questions.csv
+
+
