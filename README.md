@@ -43,4 +43,4 @@ which is structured as follows
 
 ### Adding picture questions
 
-All picture questions are stored as an image file `image.jpg` and a text file `info.txt` which contain the picture and associated answer respectively. Both these files, for a particular question, live in a directory named `question_<number>` in `DC_QUESTIONS/questions/picture_round/` where `<number>` is a question number. ** The <number> field must run from 1 to `N`, where `N` is a positive whole number, _inclusive_ of all numbers between 1 and `N`**.
+All picture questions are stored as an image file `image.jpg` and a text file `info.txt` which contain the picture and associated answer respectively. Both these files, for a particular question, live in a directory named `question_<number>` in `DC_QUESTIONS/questions/picture_round/` where `<number>` is a question number. **The `<number>` field must run from 1 to `N`, where `N` is a positive whole number, _inclusive_ of all numbers between 1 and `N`**.
