@@ -17,6 +17,7 @@ These instructions will enable you to run the software, how to add questions, an
 (see https://www.pygame.org/wiki/GettingStarted)
 4. Diversity Challenge buzzer setup
 ```
+You can of course use this code without the Diversity Challenge Buzzer setup, and make your own.
 
 ### Installing the code
 
