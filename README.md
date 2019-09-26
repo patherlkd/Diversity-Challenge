@@ -1,5 +1,7 @@
 # Diversity Challenge
 
+![alt text](DC_UI/images/DC_icon.png)
+
 *A python code written to run Diversity Challenge quiz events for the Raspberry Pi and associated hardware.*
 
 This code can be adapted for other quiz like ideas.
