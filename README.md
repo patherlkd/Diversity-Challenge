@@ -1,6 +1,6 @@
 # Diversity Challenge
 
-*A python code written to run Diversity Challenge quiz events for the Raspberry Pi and associated hardware.*
+*A python code written to run Diversity Challenge quiz events for the Raspberry Pi and associated hardware.* :+1:
 
 This code can be adapted for other quiz like ideas.
 
@@ -13,7 +13,8 @@ These instructions will enable you to run the software, how to add questions, an
 ```
 1. A Raspberry Pi 3 Model B+ (what it was originally used on)
 2. Raspbian installed
-3. [Pygame and its dependencies](https://www.pygame.org/wiki/GettingStarted)
+3. Pygame and its dependencies
+(see https://www.pygame.org/wiki/GettingStarted)
 4. Diversity Challenge buzzer setup
 ```
 
@@ -34,5 +35,6 @@ git clone https://github.com/patherlkd/Diversity-Challenge.git
 
 The Diversity Challenge code requires a database of questions. This database is located at
 > DC_QUESTIONS/questions/questions.csv
-
-
+which is structured as follows
+> N/A, author, contact, category, question, answer
+. The structure is due to the initial construction of the Diversity Challenge database, you can, of course, change this structure in the 
