@@ -41,12 +41,12 @@ To run the code as it is (HDMI audio) execute
 ```
 python3.6 DC_main.py
 ```
-or to run with Aux audio output, un-comment and comment out the relevant lines and execute
+or to run with Aux audio output, un-comment and comment out the relevant lines (labelled with HDMI and Aux audio) in `diversity_challenge.sh` and execute
 
 ```
 bash diversity_challenge.sh
 ```
-which may require root access, but on the RPi it should be fine.
+which may require root access, but on the RPi it should be fine. If you are not the owner of the RPi and the root access has been modified, please contact whoever owns the RPi.
 
 ### Adding questions
 
