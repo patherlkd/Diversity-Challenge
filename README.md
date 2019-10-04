@@ -2,24 +2,26 @@
 
 ![alt text](DC_UI/images/DC_icon.png)
 
-*A python code written to run Diversity Challenge quiz events for the Raspberry Pi and associated hardware.*
+*A python code written to run the Diversity Challenge quiz event for the Raspberry Pi and associated hardware.*
 
-This code can be adapted for other quiz like ideas.
+This code can be adapted for other quiz like ideas and is made available for anyone to use and adapt for whatever purpose. We advise that the coder be familiar with the basics of python.
 
 ## Getting Started
 
 These instructions will enable you to run the software, how to add questions, and some hints on how you can edit the code for your quiz idea.
 
-### What you need
+### What you need to run a DC style event
 
 ```
 1. A Raspberry Pi 3 Model B+ (what it was originally used on)
 2. Raspbian installed
 3. Pygame and its dependencies
 (see https://www.pygame.org/wiki/GettingStarted)
-4. Diversity Challenge buzzer setup
+4. Buzzer/button setup (push buttons on breadboards or Dome buttons).*
 ```
 You can of course use this code without the Diversity Challenge Buzzer setup, and make your own.
+
+* We will be releasing a website soon with further information on how you get DC to come to your place of work/school/university/institution to host a DC quiz event and/or hardware making event. 
 
 ### Installing the code
 
