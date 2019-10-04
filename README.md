@@ -75,13 +75,15 @@ which may require root access, but on the RPi it should be fine. If you are not 
 
 ### Adding questions
 
-The Diversity Challenge code requires a database of questions. This database is located at
+The Diversity Challenge code requires a database of questions (2). This database (initially empty) is located at
 > DC_QUESTIONS/questions/questions.csv
 
 which is structured as follows
 > N/A, author, contact, category, question, answer
 
 . The structure is due to the initial construction of the Diversity Challenge database, you can, of course, change this structure in the code (see *DC_QUESTIONS/DC_questions.py*). Please keep the fields in pure text format.
+
+(2) Again, following the launch of our website we will detail on how to gain access to the question bank we have made. If before then, you would like to know how to use some of our database please contact us via direct message on Twitter `@DiversityChall` or via email `diversitychallenge@gmail.com` and ask for Luke Davis. Creating a database is also a very fun and enlightening exercise, we recommend it!
 
 ---
 
