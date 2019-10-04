@@ -10,6 +10,15 @@ This code can be adapted for other quiz like ideas and is made available for any
 
 These instructions will enable you to run the software, how to add questions, and some hints on how you can edit the code for your quiz idea.
 
+### What you need to make general use of the code
+
+```
+1. A raspberry pi (tested on Pi 3 Model B+)
+2. Raspbian installed
+3. Pygame and its dependencies
+```
+
+The code "should" work on a linux distribution, in this case you will need to remove the reference to the RPi module and the GPIO system of the RPi.
 ### What you need to run a DC style event
 
 ```
