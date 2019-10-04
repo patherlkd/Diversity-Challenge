@@ -34,9 +34,9 @@ The code "should" work on a computer with a linux distribution, in this case you
 2. Raspbian installed
 3. Pygame and its dependencies
 (see https://www.pygame.org/wiki/GettingStarted)
-4. Buzzer/button setup (push buttons on breadboards or Dome buttons). (1)
+4. Buzzer/button setup with a Matrix 4x4 keypad (e.g. push buttons and keypad on breadboard connected to RPi). (1)
 ```
-You can of course use this code without the Diversity Challenge Buzzer setup, and make your own.
+You can of course use this code without the Diversity Challenge hardware setup, and make your own.
 
 (1) We will be releasing a website soon with further information on how you can get DC to come to your place of work/school/university/institution to host a DC quiz event and/or hardware making event. 
 
