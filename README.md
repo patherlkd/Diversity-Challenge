@@ -83,7 +83,7 @@ which is structured as follows
 
 . The structure is due to the initial construction of the Diversity Challenge database, you can, of course, change this structure in the code (see *DC_QUESTIONS/DC_questions.py*). Please keep the fields in pure text format.
 
-(2) Again, following the launch of our website we will detail on how to gain access to the question bank we have made. If before then, you would like to know how to use some of our database please contact us via direct message on Twitter `@DiversityChall` or via email `diversitychallenge@gmail.com` and ask for Luke Davis. Creating a database is also a very fun and enlightening exercise, we recommend it!
+(2) Again, following the launch of our website we will detail on how to gain access to the question bank we have made. If before then, you would like to know how to use some of our database please contact us via direct message on Twitter `@DiversityChall` or via email `diversitychallenger@gmail.com` and ask for Luke Davis. Creating a database is also a very fun and enlightening exercise, we recommend it!
 
 ---
 
